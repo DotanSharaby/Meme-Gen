@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,54 @@
     <link rel="stylesheet" href="css/main-app.css">
     <title>Meme Generator</title>
 </head>
-<body>
-    
+
+<body class="flex column align-center" onload="onInit()">
+
+    <!-- HEADER -->
+    <header class="main-header flex container space-between align-center">
+        <div class="logo">memegen</div>
+        <nav>
+            <ul class="clean-list flex">
+                <li>Gallery</li>
+                <li>Memes</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="gallery grid-container"></section>
+
+        <!-- CANVAS -->
+        <section class="meme-container flex column hidden">
+            <button class="toggle-btn" onclick="toggleView()">
+                Back to Gallery
+            </button>
+
+            <div class="meme-control flex column">
+                <canvas class="memeCanvas" id="canvas"></canvas>
+                <div class="txts-list"></div>
+            </div>
+        </section>
 
 
+        <!-- EDITOR -->
+        <section>
+            <div class="editor-container"></div>
+        </section>
 
-<script src="js/meme-service.js"></script>
-<script src="js/main-app.js"></script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="flex column justify-center align-center">
+        <small>All rights reserved</small>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/image-service.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/main-app.js"></script>
 </body>
+
 </html>
