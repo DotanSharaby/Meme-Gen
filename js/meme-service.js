@@ -1,10 +1,5 @@
 'use strict';
 
-// TODOS:
-// *** handle storage data 
-// *** get from storage a random meme to show - meme-service
-// *** make it look a lil better before final UI - css
-
 var gMeme;
 
 function createMeme(imgId) {
@@ -39,7 +34,8 @@ function createTxt(line, x = 250, y = 80) {
     };
 }
 
-// fix this shit
+// fix this shit..  >_<
+
 // function canvasClicked(ev) {
 //     let clickedTxt = gMeme.txts.find((txt) => {
 //         let textWidth = gCtx.measureText(txt.line);

@@ -159,11 +159,11 @@ function renderTxtEditor() {
                 <label for="blur">Blur:</label>
                 <input type="number" value="${txt.shadowBlur}" data-property="shadowBlur" oninput="editTxt(this)">
             </div>
+            <a href="" onclick="downloadCanvas(this)" download="">Download</a>
         </div>
     `
     document.querySelector('.txt-list').innerHTML = strHtml;
 }
-
 
 function swapTxts() {
     var meme = getMeme();
@@ -192,7 +192,6 @@ function markSelectedTxt(txtIdx) {
     var meme = getMeme();
     let text = gCtx.measureText(meme.txts[txtIdx]);
     console.log(text.width, meme.txts[txtIdx].x);
-
 }
 
 function addNewTextLine() {
@@ -232,3 +231,12 @@ function editTxt(elinput) {
     meme.txts[txtIdx][property] = value;
     handleMemeImg(meme);
 };
+
+
+// fix needed..
+function downloadCanvas(elLink) {
+    var canvas = gCanvas
+    const data = canvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-img.jpg';
+}

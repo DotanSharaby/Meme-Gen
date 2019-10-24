@@ -60,7 +60,6 @@ a {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
-
 .color-input,
 .pos-input {
     opacity: 0;
@@ -80,12 +79,16 @@ a {
 }
 
 .logo {
-    font-size: 2em;
+    font-size: 1.2em;
     padding: 5px;
 }
 
-
 /* ---meme-container--- */
+.meme-control {
+    flex-direction: column;
+}
+
+
 
 .meme-container {
     margin: 5px 0;
@@ -153,7 +156,7 @@ input[type=number] {
 }
 
 .search-bar {
-    font-size: 30px;
+    font-size: 1.2em;
     padding: 10px;
     border: none;
     outline: none;
@@ -209,4 +212,16 @@ small {
 
 .hidden {
     display: none;
+}
+
+/* ---MEDIA QUERIES--- */
+
+@media (min-width: 980px) {
+    .meme-control {
+        flex-direction: row;
+    }
+
+    .memeCanvas {
+        margin: 5px 50px 25px 0;
+    }
 }
