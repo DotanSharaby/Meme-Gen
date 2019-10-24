@@ -63,7 +63,6 @@ function drawTxt(txt) {
     gCtx.fillStyle = txt.color;
     if (txt.isShadow) addTxtShadow(txt);
     if (txt.isOutline) addTxtOutline(txt);
-
     gCtx.fillText(txt.line, txt.x, txt.y);
 }
 
@@ -97,10 +96,10 @@ function renderTxtEditor() {
                 <button onclick="deleteTxt()">
                     <img class="icons trash-icon" src="./icons/trash.png"/>
                 </button>
-                <button onclick="addTextLine()">
+                <button onclick="addNewTextLine()">
                     <img class="icons txt-swap-icon" src="./icons/add.png"/>
                 </button>
-                <button onclick="changeSelectedTxtIdx()">
+                <button onclick="swapTxts()">
                     <img class="icons txt-swap-icon" src="./icons/up-and-down-opposite-double-arrows-side-by-side.png"/>
                 </button>
             </div>
@@ -124,9 +123,10 @@ function renderTxtEditor() {
                 </button>
             </div>
             <div>
-                <input type="number" value="${txt.x}" min="0" step="5" data-property="x" oninput="editTxt(this)">
-                <input type="number" value="${txt.y}" min="0" step="5" data-property="y" oninput="editTxt(this)">
-
+                <div style="display: inline-block;">
+                    X: <input type="number" value="${txt.x}" min="0" step="5" data-property="x" oninput="editTxt(this)"><br />
+                    Y: <input type="number" value="${txt.y}" min="0" step="5" data-property="y" oninput="editTxt(this)">
+                </div>
                 <button onclick="editTxt(this)" data-property="align">
                     <img class="icons txt-align-icon" src="./icons/align-to-left.png" data-value="right"/>
                 </button>
@@ -136,41 +136,69 @@ function renderTxtEditor() {
                 <button onclick="editTxt(this)" data-property="align">
                     <img class="icons txt-align-icon" src="./icons/align-to-right.png" data-value="left"/>
                 </button>
-
             </div>
             <div>
                 <label for="outline">Outline Width:</label>
                 <input id="outline" type="checkbox" data-property="isOutline" checked onclick="editTxt(this)">
                 <input type="number" value="${txt.lineWidth}" min="0" step="1" data-property="lineWidth" oninput="editTxt(this)">
-                <input type="color" value="${txt.strokeStyle}" data-property="strokeStyle" oninput="editTxt(this)">
+               
+                <button style="position:relative; display:inline-block">
+                    <img class="icons txt-size-icon" src="./icons/paint-board-and-brush.png"/>
+                    <input class="color-input" type="color" value="${txt.strokeStyle}" data-property="strokeStyle" oninput="editTxt(this)">
+                </button>  
             </div>
             <div>
                 <input id="shadow" type="checkbox" data-property="isShadow" onclick="editTxt(this)">
                 <label for="shadow">Shadow:</label>
-                <input type="color" value="${txt.shadowColor}" data-property="shadowColor" oninput="editTxt(this)">
-                <input type="number" value="${txt.shadowOffsetX}" step="1" data-property="shadowOffsetX" oninput="editTxt(this)">
-                <input type="number" value="${txt.shadowOffsetY}" step="1" data-property="shadowOffsetY" oninput="editTxt(this)">
+                <button style="position:relative; display:inline-block">
+                    <img class="icons txt-size-icon" src="./icons/paint-board-and-brush.png"/>
+                    <input class="color-input" type="color" value="${txt.shadowColor}" data-property="shadowColor" oninput="editTxt(this)">
+                </button> 
+                    X: <input type="number" value="${txt.shadowOffsetX}" step="1" data-property="shadowOffsetX" oninput="editTxt(this)">
+                    Y: <input type="number" value="${txt.shadowOffsetY}" step="1" data-property="shadowOffsetY" oninput="editTxt(this)">
                 <label for="blur">Blur:</label>
                 <input type="number" value="${txt.shadowBlur}" data-property="shadowBlur" oninput="editTxt(this)">
             </div>
         </div>
     `
-
     document.querySelector('.txt-list').innerHTML = strHtml;
 }
 
-function changeSelectedTxtIdx() {
+
+function swapTxts() {
     var meme = getMeme();
-    if (meme.selectedTxtIdx === meme.txts.length - 1) return meme.selectedTxtIdx = 0;
-    meme.selectedTxtIdx++;
+    var [firstTxt, secondTxt] = [meme.txts[1], meme.txts[0]];
+    meme.txts = [firstTxt, secondTxt];
+    var [y1, y2] = [meme.txts[0].y, meme.txts[1].y];
+    meme.txts[0].y = y2;
+    meme.txts[1].y = y1;
+    handleMemeImg(meme);
 }
 
-function markSelectedTxt(txtidx) {
-    // mark for 3 seconds which text is beign edited
+// function changeSelectedTxtIdx() {
+//     var meme = getMeme();
+//     if (meme.selectedTxtIdx === meme.txts.length - 1) {
+//         markSelectedTxt(meme.selectedTxtIdx);
+//         return meme.selectedTxtIdx = 0;
+//     }
+//     meme.selectedTxtIdx++;
+//     markSelectedTxt(meme.selectedTxtIdx);
+// }
+
+
+
+function markSelectedTxt(txtIdx) {
+
+    var meme = getMeme();
+    let text = gCtx.measureText(meme.txts[txtIdx]);
+    console.log(text.width, meme.txts[txtIdx].x);
+
 }
 
-function addTextLine() {
-    console.log('adding text line');
+function addNewTextLine() {
+    var meme = getMeme();
+    meme.txts.push(createTxt('New Line', 250, 250));
+    handleMemeImg(meme);
 }
 
 function editTxtSize(val) {
@@ -179,7 +207,6 @@ function editTxtSize(val) {
     meme.txts[txtIdx].size += val;
     handleMemeImg(meme);
 }
-
 
 function editTxt(elinput) {
     var meme = getMeme();
@@ -204,22 +231,4 @@ function editTxt(elinput) {
     }
     meme.txts[txtIdx][property] = value;
     handleMemeImg(meme);
-}
-
-
-// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderCanvas)
-}
-
-function loadImageFromInput(ev, onImageReady) {
-    document.querySelector('.share-container').innerHTML = ''
-    var reader = new FileReader();
-
-    reader.onload = function (event) {
-        var img = new Image();
-        img.onload = onImageReady.bind(null, img)
-        img.src = event.target.result;
-    }
-    reader.readAsDataURL(ev.target.files[0]);
-}
+};

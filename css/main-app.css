@@ -61,7 +61,8 @@ a {
 }
 
 
-.color-input {
+.color-input,
+.pos-input {
     opacity: 0;
     position: absolute;
     left: 0;
@@ -133,12 +134,18 @@ input[type=number] {
     width: 25px;
 }
 
-
 .about-container {
     text-align: center;
     background-color: white;
     padding: 20px;
+    width: 100%;
 }
+
+.about-text {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
 .search-container {
     text-align: center;
     background-color: white;
@@ -164,7 +171,6 @@ small {
     padding: 5px;
     margin: 5px;
 }
-
 
 /* ---HELPERS--- */
 
