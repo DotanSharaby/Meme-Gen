@@ -1,9 +1,9 @@
 'use strict';
 
 // TODOS:
+// *** handle storage data 
 // *** get from storage a random meme to show - meme-service
 // *** make it look a lil better before final UI - css
-
 
 
 var gMeme;
@@ -38,4 +38,11 @@ function createTxt(line, x = 150, y = 80) {
         x: x,
         y: y
     };
+}
+
+function deleteTxt(txtIdx) {
+    gMeme.txts.splice(txtIdx, 1);
+    handleMemeImg(gMeme);
+    // drawCanvas();
+    renderTxtEditor();
 }

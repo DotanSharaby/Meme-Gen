@@ -47,7 +47,8 @@ function handleMemeImg(meme) {
         if (img.height > 500) img.height = 500;
         gCanvas.width = img.width;
         gCanvas.height = img.height;
-        meme.txts[1].y = img.height - 70;
+        if(meme.txts[1]) meme.txts[1].y = img.height - 70;
+        // meme.txts[1].y = img.height - 70;
         drawCanvas(img);
     }
 }
@@ -96,7 +97,7 @@ function renderTxtEditor() {
         return `
         <div class="txt-editor">
             <div>
-                <button onclick="deleteTxt(${idx})"></button>
+                <button onclick="deleteTxt(${idx})">X</button>
                 <input type="text" data-property="line" placeholder="${txt.line}" oninput="editTxt(this,${idx})">
                 <input type="range" value="${txt.size}" min="10" step="2" data-property="size" oninput="editTxt(this,${idx})">
                 <input type="color" value="${txt.color}" data-property="color" oninput="editTxt(this,${idx})">
@@ -139,6 +140,7 @@ function renderTxtEditor() {
     document.querySelector('.txts-list').innerHTML = strHtml;
 }
 
+// check when and why both lines are getting changed
 function editTxt(elinput, txtIdx) {
     var property = elinput.dataset.property;
     var value;
@@ -155,7 +157,6 @@ function editTxt(elinput, txtIdx) {
             break;
     }
     gMeme.txts[txtIdx][property] = value;
-
     handleMemeImg(gMeme);
 }
 
