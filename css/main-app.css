@@ -27,6 +27,7 @@ a {
     padding: 5px;
     transition: all 0.3s;
     cursor: pointer;
+    margin: 5px;
 }
 
 /* ---layout--- */
@@ -43,19 +44,30 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-gap: 10px;
     padding: 10px;
+    margin: 10px;
 }
 
 .grid-container>img {
     display: block;
     width: 100%;
-    max-height: 200px;
+    height: 150px;
     cursor: pointer;
     border-radius: 2px;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .grid-container>img:hover {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+
+.color-input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    cursor: pointer;
 }
 
 /* --header-- */
@@ -65,6 +77,12 @@ a {
     width: 100%;
     background-color: #ff7f00;
 }
+
+.logo {
+    font-size: 2em;
+    padding: 5px;
+}
+
 
 /* ---meme-container--- */
 
@@ -80,10 +98,12 @@ a {
 }
 
 .txt-editor {
+
     padding: 5px 10px;
     border: 1px #f4511e solid;
     border-radius: 5px;
     margin: 5px;
+    text-align: center;
 }
 
 .memeCanvas {
@@ -109,12 +129,40 @@ input[type=number] {
     content: '\2612';
 }
 
+.icons {
+    width: 25px;
+}
+
+
+.about-container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+}
+.search-container {
+    text-align: center;
+    background-color: white;
+    width: 100%;
+}
+
+.search-bar {
+    font-size: 30px;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
 /* ---footer--- */
 
 footer {
     color: white;
     width: 100%;
     background-color: #ff7f00;
+}
+
+small {
+    padding: 5px;
+    margin: 5px;
 }
 
 

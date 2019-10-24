@@ -10,7 +10,13 @@ function createImgs() {
 
     imgs.push(createImage('https://i.imgur.com/zJtKrHF.jpg', ['troll', 'politics']),
         createImage('https://i.imgur.com/ertQX67.jpg', ['troll', 'politics']),
-        createImage('https://i.imgur.com/uHCEW1F.jpg', ['animel', 'sleep', 'baby'])
+        createImage('https://i.imgur.com/uHCEW1F.jpg', ['animel', 'sleep', 'baby']),
+        createImage('https://i.imgur.com/UVdxX82.jpg', ['funny', 'troll']),
+        createImage('https://i.imgur.com/DX9HO5B.jpg', ['funny', 'baby']),
+        createImage('https://i.imgur.com/oCzx3yZ.jpg', ['troll']),
+        createImage('https://i.imgur.com/7K90eyW.jpg', ['metrix']),
+        createImage('https://i.imgur.com/PfYcCNi.jpg', ['happy'])
+
     );
 
     gImgs = imgs;

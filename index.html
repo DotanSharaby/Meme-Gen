@@ -16,15 +16,26 @@
         <div class="logo">memegen</div>
         <nav>
             <ul class="clean-list flex">
-                <li>Gallery</li>
-                <li>Memes</li>
-                <li>About</li>
+                <li>
+                    <a href="">Gallery</a>
+                </li>
+                <li>
+                    <a href="">Memes</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <!-- SEARCH -->
+    <section class="search-container">
+        <input class="search-bar" placeholder="Enter search keyword &#8981;" />
+    </section>
 
+    <main>
+        <!-- GALLERY -->
         <section class="gallery grid-container"></section>
 
         <!-- CANVAS -->
@@ -35,7 +46,7 @@
 
             <div class="meme-control flex column">
                 <canvas class="memeCanvas" id="canvas"></canvas>
-                <div class="txts-list"></div>
+                <div class="txt-list"></div>
             </div>
         </section>
 
@@ -47,8 +58,19 @@
 
     </main>
 
+    <!-- ABOUT -->
+    <section>
+        <div class="about-container">
+            <h4>The best Meme Generator in the west</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt nostrum ad nam molestias corrupti
+                iusto omnis, assumenda dolor, consequatur, inventore nobis a dolorum soluta nulla rem blanditiis numquam
+                velit in.</p>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="flex column justify-center align-center">
+        <div class="logo">memegen</div>
         <small>All rights reserved</small>
     </footer>
 

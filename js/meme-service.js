@@ -12,7 +12,7 @@ function createMeme(imgId) {
     gMeme = {
         selectedImgId: imgId,
         selectedTxtIdx: 0,
-        txts: [createTxt('I never eat Falafel'), createTxt('Yo', 200)]
+        txts: [createTxt('Text will be here'), createTxt('And here', 200)]
     };
 }
 
@@ -21,11 +21,11 @@ function getMeme() {
 }
 
 
-function createTxt(line, x = 150, y = 80) {
+function createTxt(line, x = 250, y = 80) {
     return {
         line: line,
         size: 30,
-        align: 'left',
+        align: 'center',
         fontFamily: 'Impact',
         isOutline: true,
         lineWidth: 2,
@@ -40,9 +40,9 @@ function createTxt(line, x = 150, y = 80) {
     };
 }
 
-function deleteTxt(txtIdx) {
+function deleteTxt() {
+    var txtIdx = gMeme.selectedTxtIdx;
     gMeme.txts.splice(txtIdx, 1);
     handleMemeImg(gMeme);
-    // drawCanvas();
     renderTxtEditor();
 }
